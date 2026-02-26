@@ -3,59 +3,40 @@
 <head>
     <title>Edit Expense</title>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
-<h2>Edit Expense</h2>
+<div class="container">
 
-<form th:action="@{/expenses/update/{id}(id=${expenseId})}"
-      th:object="${expense}"
-      method="post">
+    <h2>Edit Expense</h2>
 
-    <div>
-        <label>Amount:</label>
-        <input type="number" step="0.01" th:field="*{amount}" />
-        <div th:if="${#fields.hasErrors('amount')}"
-             th:errors="*{amount}"
-             style="color:red"></div>
-    </div>
+    <form th:action="@{/expenses/update/{id}(id=${expenseId})}"
+          th:object="${expense}"
+          method="post">
 
-    <br/>
+        <label>Amount</label>
+        <input type="number" step="0.01" th:field="*{amount}">
+        <div class="error" th:errors="*{amount}"></div>
 
-    <div>
-        <label>Category:</label>
-        <input type="text" th:field="*{category}" />
-        <div th:if="${#fields.hasErrors('category')}"
-             th:errors="*{category}"
-             style="color:red"></div>
-    </div>
+        <label>Category</label>
+        <input type="text" th:field="*{category}">
+        <div class="error" th:errors="*{category}"></div>
 
-    <br/>
+        <label>Date</label>
+        <input type="date" th:field="*{date}">
+        <div class="error" th:errors="*{date}"></div>
 
-    <div>
-        <label>Date:</label>
-        <input type="date" th:field="*{date}" />
-        <div th:if="${#fields.hasErrors('date')}"
-             th:errors="*{date}"
-             style="color:red"></div>
-    </div>
+        <label>Description</label>
+        <input type="text" th:field="*{description}">
 
-    <br/>
+        <button type="submit" class="btn btn-primary">Update</button>
 
-    <div>
-        <label>Description:</label>
-        <input type="text" th:field="*{description}" />
-    </div>
+        <a th:href="@{/expenses}" class="btn btn-reset">Back</a>
 
-    <br/>
+    </form>
 
-    <button type="submit">Update</button>
-
-</form>
-
-<br/>
-
-<a th:href="@{/expenses}">Back to List</a>
+</div>
 
 </body>
 </html>

@@ -1,37 +1,42 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Create Expense</title>
+    <title>Add Expense</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
-<h2>Add Expense</h2>
+<div class="container">
 
-<form th:action="@{/expenses}" th:object="${expense}" method="post">
+    <h2>Add Expense</h2>
 
-    Amount:
-    <input type="number" step="0.01" th:field="*{amount}" />
-    <div th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}"></div>
-    <br/>
+    <form th:action="@{/expenses}"
+          th:object="${expense}"
+          method="post">
 
-    Category:
-    <input type="text" th:field="*{category}" />
-    <div th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></div>
-    <br/>
+        <label>Amount</label>
+        <input type="number" step="0.01" th:field="*{amount}">
+        <div class="error" th:errors="*{amount}"></div>
 
-    Date:
-    <input type="date" th:field="*{date}" />
-    <div th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></div>
-    <br/>
+        <label>Category</label>
+        <input type="text" th:field="*{category}">
+        <div class="error" th:errors="*{category}"></div>
 
-    Description:
-    <input type="text" th:field="*{description}" />
-    <br/>
+        <label>Date</label>
+        <input type="date" th:field="*{date}">
+        <div class="error" th:errors="*{date}"></div>
 
-    <button type="submit">Save</button>
-</form>
+        <label>Description</label>
+        <input type="text" th:field="*{description}">
 
-<a th:href="@{/expenses}">Back</a>
+        <button type="submit" class="btn btn-success">Save</button>
+
+        <a th:href="@{/expenses}" class="btn btn-reset">Back</a>
+
+    </form>
+
+</div>
 
 </body>
 </html>

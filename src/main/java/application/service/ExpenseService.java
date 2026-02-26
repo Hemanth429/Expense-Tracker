@@ -97,5 +97,22 @@ public class ExpenseService {
                 e.getDescription()
         );
     }
+    public List<Expense> findByCategory(String category) {
+        return repo.findByCategoryIgnoreCaseOrderByDateDesc(category);
+    }
+
+    public List<Expense> findByDateBetween(LocalDate start, LocalDate end) {
+        return repo.findByDateBetweenOrderByDate(start, end);
+    }
+
+    public List<Expense> findByMonthAndCategory(LocalDate start, LocalDate end, String category) {
+        return repo.findByDateBetweenAndCategoryIgnoreCaseOrderByDateDesc(start, end, category);
+    }
+    public List<Expense> getAllExpenses() {
+        return repo.findAll();
+    }
+    public List<String> getAllCategories() {
+        return repo.findDistinctCategories();
+    }
 }
 
